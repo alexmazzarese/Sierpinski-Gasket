@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>2D Sierpinski Gasket</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+
+void
+main()
+{
+	gl_PointSize = 1.0;
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform vec4 vColor;
+
+void
+main()
+{
+    gl_FragColor = vColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="gasket1.js"></script>
+</head>
+
+<body>
+<h1>
+    Please Use The Following Controls To Change The Sierpinski Gasket:
+</h1>
+<div class="slidecontainer">
+    <p>Number Of Points:</p>
+    <input id="mySlider" type="range" min="500" max="100000" value="5000" />
+</div>
+<form onsubmit="changeColors()">
+    <label for="red">RED:</label>
+    <input type="number" id="red" name="red" min="0.0" max="1.0" value="0.0" step="0.1" />
+    <label for="green">GREEN:</label>
+    <input type="number" id="green" name="green" min="0.0" max="1.0" value="0.0" step="0.1" />
+    <label for="blue">BLUE:</label>
+    <input type="number" id="blue" name="blue" min="0.0" max="1.0" value="0.0" step="0.1" />
+</form>
+<div class="button">
+    <input type="button" id="draw" value="Draw" onclick="render()" />
+    <input type="button" id="clear" value="Clear" onclick="clear()" />
+    <input type="button" id="animate" value="Animate" onclick="animate()">
+</div>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
